@@ -22,7 +22,9 @@ class BooksController extends Controller
      */
     public function search(Request $request, String $searchKeyword)
     {
-        $this->bookSearchService->searchAllBookstoresByKeyword($searchKeyword);
+        $unorderedResults = $this->bookSearchService->searchAllBookstoresByKeyword($searchKeyword);
+        $sortedResults = $this->bookSearchService->sortUnifiedResultsByPrice($unorderedResults);
+        dd($sortedResults);
 
         // return view('user.profile', [
         //     'user' => User::findOrFail($id)

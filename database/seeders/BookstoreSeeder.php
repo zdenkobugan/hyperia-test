@@ -19,7 +19,7 @@ class BookstoreSeeder extends Seeder
             [
                 'name' => 'Fiktivne knihkupectvo 1',
                 'search_url' => 'https://fiktivne-knihy.sk/hladaj?nazov=',
-                'path_to_list' => 'data',
+                'path_to_list' => '["data"]',
                 'name_identifier' => 'nazov',
                 'price_identifier' => 'cena',
                 'price_regex_extractor' => '([0-9,]+(\.[0-9]{2})?)',
