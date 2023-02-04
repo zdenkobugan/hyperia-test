@@ -28,7 +28,7 @@ class BooksController extends Controller
      *  POST akcia volaná po submite formulára na hlavnej index stránke, umožňuje upravovať, prípadne sanitizovať vstupné kľúčové slovo a presmeruje používateľa na GET routu s výsledkami.
      *
      * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @return Illuminate\Http\RedirectResponse
      */
     public function processSearch(Request $request)
     {

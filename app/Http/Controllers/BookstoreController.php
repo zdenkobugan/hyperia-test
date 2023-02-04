@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class BookstoreController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Zobrazí zoznam všetkých uložených kníhkupectiev s tlačidlami na CUD operácie
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -20,9 +20,9 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Zobrazí formulár pre pridanie nového kníhkupectva
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -32,10 +32,10 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Uloží nové kníhkupectvo po odoslaní formu a vráti užívateľa na zoznam existujúcich kníhkupectiev
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -54,23 +54,12 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Zobrazí formulár na úpravu existujúceho kníhkupectva s predvyplnenými hodnotami
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(int $id)
     {
         return view('bookstore.edit', [
             'bookstore' => Bookstore::findOrFail($id)
@@ -78,13 +67,13 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updatne existujúce kníhkupectvo novými hodnotami z edit formu, po vykonaní redirectne užívateľa na zoznam kníhkupectiev.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $newBookstoreData = [
             'name' => $request->input('name'),
@@ -101,12 +90,12 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Show the form for deleting the specified resource.
+     * Zobrazí form pre potvrdenie zmazania existujúceho kníhkupectva.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         return view('bookstore.delete', [
             'bookstore' => Bookstore::findOrFail($id)
@@ -114,12 +103,12 @@ class BookstoreController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * DELETE akcia pre fyzické zmazanie existujúceho kníhkupectva.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Bookstore::findOrFail($id)->delete();
 
