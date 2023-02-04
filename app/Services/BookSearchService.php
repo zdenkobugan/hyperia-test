@@ -20,24 +20,27 @@ class BookSearchService
             // comment for leveling
             if ('' !== $bookstore->path_to_list) {
                 $levels = json_decode($bookstore->path_to_list);
-                foreach ($levels as $level) {
-                    $decodedResults = $decodedResults[$level];
+                if (null !== $levels && is_array($levels)) {
+                    foreach ($levels as $level) {
+                        $decodedResults = $decodedResults[$level];
+                    }
                 }
             }
+            if (is_array($decodedResults)) {
+                foreach ($decodedResults as $bookItem) {
+                    $processedItem = [];
 
-            foreach ($decodedResults as $bookItem) {
-                $processedItem = [];
+                    $processedItem['name'] = $bookItem[$bookstore->name_identifier];
+                    $processedItem['bookstore_name'] = $bookstore->name;
+                    if ('' !== $bookstore->price_regex_extractor) {
+                        preg_match($bookstore->price_regex_extractor, $bookItem[$bookstore->price_identifier], $matches);
+                        $processedItem['price'] = (int)$matches[0];
+                    } else {
+                        $processedItem['price'] = $bookItem[$bookstore->price_identifier];
+                    }
 
-                $processedItem['name'] = $bookItem[$bookstore->name_identifier];
-                $processedItem['bookstore_name'] = $bookstore->name;
-                if ('' !== $bookstore->price_regex_extractor) {
-                    preg_match($bookstore->price_regex_extractor, $bookItem[$bookstore->price_identifier], $matches);
-                    $processedItem['price'] = (int)$matches[0];
-                } else {
-                    $processedItem['price'] = $bookItem[$bookstore->price_identifier];
+                    $unifiedResults[] = $processedItem;
                 }
-
-                $unifiedResults[] = $processedItem;
             }
         }
 
