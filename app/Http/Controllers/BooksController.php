@@ -15,9 +15,8 @@ class BooksController extends Controller
     }
 
     /**
-     * Shows found books from all bookstores filtered by searched name sorted by price.
+     * Zobrazuje základný interface pre vyhľadávanie, jednoduché search okno.
      *
-     * @param  String  $searchKeyword
      * @return \Illuminate\View\View
      */
     public function index()
@@ -25,11 +24,10 @@ class BooksController extends Controller
         return view('books.search');
     }
 
-
     /**
-     * Shows found books from all bookstores filtered by searched name sorted by price.
+     *  POST akcia volaná po submite formulára na hlavnej index stránke, umožňuje upravovať, prípadne sanitizovať vstupné kľúčové slovo a presmeruje používateľa na GET routu s výsledkami.
      *
-     * @param  String  $searchKeyword
+     * @param  Request  $request
      * @return \Illuminate\View\View
      */
     public function processSearch(Request $request)
@@ -40,8 +38,9 @@ class BooksController extends Controller
     }
 
     /**
-     * Shows found books from all bookstores filtered by searched name sorted by price.
+     * Zobrazuje výsledky hľadania podľa kľúčového slova, pričom výsledky sú zoradené podľa ceny. Funguje ako samostatná URL get cesta.
      *
+     * @param  Request  $request
      * @param  String  $searchKeyword
      * @return \Illuminate\View\View
      */

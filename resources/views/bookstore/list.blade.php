@@ -17,12 +17,12 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th class="px-3">Názov</th>
-                        <th class="px-3">API URL</th>
-                        <th class="px-3">Identifikátor názvu</th>
-                        <th class="px-3">Identifikátor ceny</th>
-                        <th class="px-3">Cesta k položkám</th>
-                        <th class="px-3">Regex na extrakciu ceny</th>
+                        <th class="px-3 text-left">Názov</th>
+                        <th class="px-3 text-left">API URL</th>
+                        <th class="px-3 text-left">Identifikátor názvu</th>
+                        <th class="px-3 text-left">Identifikátor ceny</th>
+                        <th class="px-3 text-left">Cesta k položkám</th>
+                        <th class="px-3 text-left">Regex na extrakciu ceny</th>
                     </tr>
                 </thead>
                 <tbody>
