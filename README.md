@@ -8,15 +8,15 @@ Pozdravujem do Hyperie, posielam Vám vypracované zadanie - porovnávač cien f
 
 Pre rozbehanie projektu bude potrebné nasledovné:
 PHP 8.1 a vyššie
-MySQL databáza
+MySQL 8 databáza
 
 - naklonujte si projekt z GitHub repozitára
 - nastavte si lokálny web server s PHP a jeho zdroj nastavte na adresár /public
 - v MySQL vytvorte novú databázu pre projekt - napr. knihkupectvo
 - v root adresári upravte súbor .env - vyplňte údaje v sekcií DB_ správnymi hodnotami pre pripojenie k vytvorenej lokálnej MySQL databáze 
 - v root adresári odporúčam spustiť composer install a composer update
-- v root adresári spustite npm run dev
-- v root adresári spustite príkaz php artisan migrate:fresh --seed pre vytvorenie tabuliek 
+- v root adresári spustite npm install a npm run dev
+- v root adresári spustite príkaz php artisan migrate:fresh --seed pre vytvorenie tabuliek a naplnenie dátami
 
 ## Popis používania projektu
 
@@ -28,11 +28,15 @@ Projekt má niekoľko URL ciest s príslušnými GUI
 
  ## Organizácia kódu
  
- Pre zhodnotenie projektu najdôležitejšie súbory nájdete:
+ Pre zhodnotenie projektu najdôležitejšie súbory kódu nájdete:
+ 
  - kontrolery v adresári app/Http/Controllers
  - modely v adresári app/Models
  - servicy s vyhľadávacou logikou a generovaním fake API resposov v app/Services
  - DB migrácie na vytvorenie DB štruktúry - database/migrations
  - seedre pre seedovanie tabuliek dummy dátami - database/seeders
- -
+ - blade viewy pre všetky GUI - resources/views
+ - definiciu routes - routes/web.php
+ 
+ 
 
