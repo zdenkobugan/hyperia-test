@@ -1,66 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Hyperia zadanie - Kníhkupectvo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Úvod
 
-## About Laravel
+Pozdravujem do Hyperie, posielam Vám vypracované zadanie - porovnávač cien fiktívnych kníhkupectiev. Riešenie je vypracované na frameworku Laravel 9 s kompletným frontendom na vyhľadávanie, zobrazenie výsledkov, osobitnou sekciou na administračnú správu kníhkupectiev, komplet CRUD akcie - pridanie nového kníkupectva, editácia existujúceho, zmazanie a prehľad všetkých pridaných s príslušným GUI. Pre potreby fiktívnych API responsov je vypracovaný samostatný modul ktorý tieto odpovede generuje z dát uložených v databáze pomocou špecifických šablón pre konkrétne fiktívne URL, je možné ich pridávat dynamicky. Frontend bol implementovaný priamo cez Laravel Blade viewy a štýlovaný pomocou TailwindCSS 3 utility classes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Nastavenie v lokálnom prostredí
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pre rozbehanie projektu bude potrebné nasledovné:
+PHP 8.1 a vyššie
+MySQL 8 databáza
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- naklonujte si projekt z GitHub repozitára
+- nastavte si lokálny web server s PHP a jeho zdroj nastavte na adresár /public
+- v MySQL vytvorte novú databázu pre projekt - napr. knihkupectvo
+- v root adresári upravte súbor .env - vyplňte údaje v sekcií DB_ správnymi hodnotami pre pripojenie k vytvorenej lokálnej MySQL databáze 
+- v root adresári odporúčam spustiť composer install a composer update
+- v root adresári spustite npm install a npm run dev
+- v root adresári spustite príkaz php artisan migrate:fresh --seed pre vytvorenie tabuliek a naplnenie dátami
 
-## Learning Laravel
+## Popis používania projektu
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Projekt má niekoľko URL ciest s príslušnými GUI
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- / alebo /books - interface na vyhľadávanie, obsahuje input na zadanie kľúčového slova a tlačidlo Hľadať
+- /books/search/{keyword} - cesta na priame vrátenie výsledkov vyhľadávania pre zadané kľúčové slovo - keyword URL parameter - táto cesta samotná je riešením zadania
+- /bookstore/ - cesta pre GUI interface pre pridávanie, úpravu, mazanie či zobrazenie zoznamu pridaných kníhkupectiev s ich špecifikami pre vyhľadávanie (identifikátor pre cenu, názov, regex pre extrakciu ceny ak obsahuje nečíselné znaky, postup (cestu) pre parsovanie prijatých API dát ak je zoznam titulov vnorený - cez tento interface je možné pridávať nové kníhkupectvá bez nutnosti úpravy kódu aj keď sa štruktúra ich API odpovedí líši
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ ## Organizácia kódu
+ 
+ Pre zhodnotenie projektu najdôležitejšie súbory kódu nájdete:
+ 
+ - kontrolery v adresári app/Http/Controllers
+ - modely v adresári app/Models
+ - servicy s vyhľadávacou logikou a generovaním fake API responsov v app/Services
+ - DB migrácie na vytvorenie DB štruktúry - database/migrations
+ - seedre pre seedovanie tabuliek dummy dátami - database/seeders
+ - blade viewy pre všetky GUI - resources/views
+ - definíciu routes - routes/web.php
+ 
+ 
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
