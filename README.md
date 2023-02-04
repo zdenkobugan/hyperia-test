@@ -32,11 +32,11 @@ Projekt má niekoľko URL ciest s príslušnými GUI
  
  - kontrolery v adresári app/Http/Controllers
  - modely v adresári app/Models
- - servicy s vyhľadávacou logikou a generovaním fake API resposov v app/Services
+ - servicy s vyhľadávacou logikou a generovaním fake API responsov v app/Services
  - DB migrácie na vytvorenie DB štruktúry - database/migrations
  - seedre pre seedovanie tabuliek dummy dátami - database/seeders
  - blade viewy pre všetky GUI - resources/views
- - definiciu routes - routes/web.php
+ - definíciu routes - routes/web.php
  
  
 
